@@ -1,0 +1,26 @@
+// https://aka.ms/devcontainer.json
+{
+	"name": "Existing Docker Compose (Extend)",
+	"dockerComposeFile": [
+		"../docker-compose.yml"
+	],
+	"service": "quantaquirk.test",
+	"workspaceFolder": "/var/www/html",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				// "mikestead.dotenv",
+				// "amiralizadeh9480.quantaquirk-extra-intellisense",
+				// "ryannaddy.quantaquirk-artisan",
+				// "onecentlin.quantaquirk5-snippets",
+				// "onecentlin.quantaquirk-blade"
+			],
+			"settings": {}
+		}
+	},
+	"remoteUser": "sail",
+	"postCreateCommand": "chown -R 1000:1000 /var/www/html"
+	// "forwardPorts": [],
+	// "runServices": [],
+	// "shutdownAction": "none",
+}

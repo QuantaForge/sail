@@ -1,0 +1,46 @@
+{
+    "name": "quantaquirk/sail",
+    "description": "Docker files for running a basic QuantaQuirk application.",
+    "keywords": ["quantaquirk", "docker"],
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Tomáš Selič (Smisch-DEV)",
+            "email": "contact@smisch.sk"
+        }
+    ],
+    "require": {
+        "php": "^8.1",
+        "quantaquirk/console": "^1.0.0",
+        "quantaquirk/contracts": "^1.0.0",
+        "quantaquirk/support": "^1.0.0",
+        "symfony/yaml": "^6.0"
+    },
+    "bin": [
+        "bin/sail"
+    ],
+    "autoload": {
+        "psr-4": {
+            "QuantaQuirk\\Sail\\": "src/"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.x-dev"
+        },
+        "quantaquirk": {
+            "providers": [
+                "QuantaQuirk\\Sail\\SailServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require-dev": {
+        "orchestra/testbench": "^6.0|^7.0|^8.0",
+        "phpstan/phpstan": "^1.10"
+    }
+}
