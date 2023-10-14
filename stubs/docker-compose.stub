@@ -1,8 +1,8 @@
-# For more information: https://quantaquirk.com/docs/sail
+# For more information: https://quantaforge.com/docs/sail
 services:
-    quantaquirk.test:
+    quantaforge.test:
         build:
-            context: ./vendor/quantaquirk/sail/runtimes/8.2
+            context: ./vendor/quantaforge/sail/runtimes/8.2
             dockerfile: Dockerfile
             args:
                 WWWGROUP: '${WWWGROUP}'
@@ -14,7 +14,7 @@ services:
             - '${VITE_PORT:-5173}:${VITE_PORT:-5173}'
         environment:
             WWWUSER: '${WWWUSER}'
-            QUANTAQUIRK_SAIL: 1
+            QUANTAFORGE_SAIL: 1
             XDEBUG_MODE: '${SAIL_XDEBUG_MODE:-off}'
             XDEBUG_CONFIG: '${SAIL_XDEBUG_CONFIG:-client_host=host.docker.internal}'
             IGNITION_LOCAL_SITES_PATH: '${PWD}'

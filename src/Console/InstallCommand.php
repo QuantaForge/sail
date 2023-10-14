@@ -1,8 +1,8 @@
 <?php
 
-namespace QuantaQuirk\Sail\Console;
+namespace QuantaForge\Sail\Console;
 
-use QuantaQuirk\Console\Command;
+use QuantaForge\Console\Command;
 use RuntimeException;
 use Symfony\Component\Process\Process;
 
@@ -24,7 +24,7 @@ class InstallCommand extends Command
      *
      * @var string
      */
-    protected $description = 'Install QuantaQuirk Sail\'s default Docker Compose file';
+    protected $description = 'Install QuantaForge Sail\'s default Docker Compose file';
 
     /**
      * Execute the console command.

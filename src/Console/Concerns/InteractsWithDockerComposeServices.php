@@ -1,6 +1,6 @@
 <?php
 
-namespace QuantaQuirk\Sail\Console\Concerns;
+namespace QuantaForge\Sail\Console\Concerns;
 
 use Symfony\Component\Process\Process;
 use Symfony\Component\Yaml\Yaml;
@@ -39,8 +39,8 @@ trait InteractsWithDockerComposeServices
      */
     protected function gatherServicesInteractively()
     {
-        if (function_exists('\QuantaQuirk\Prompts\multiselect')) {
-            return \QuantaQuirk\Prompts\multiselect(
+        if (function_exists('\QuantaForge\Prompts\multiselect')) {
+            return \QuantaForge\Prompts\multiselect(
                 label: 'Which services would you like to install?',
                 options: $this->services,
                 default: ['mysql'],
@@ -64,11 +64,11 @@ trait InteractsWithDockerComposeServices
             ? Yaml::parseFile($composePath)
             : Yaml::parse(file_get_contents(__DIR__ . '/../../../stubs/docker-compose.stub'));
 
-        // Adds the new services as dependencies of the quantaquirk.test service...
-        if (! array_key_exists('quantaquirk.test', $compose['services'])) {
-            $this->warn('Couldn\'t find the quantaquirk.test service. Make sure you add ['.implode(',', $services).'] to the depends_on config.');
+        // Adds the new services as dependencies of the quantaforge.test service...
+        if (! array_key_exists('quantaforge.test', $compose['services'])) {
+            $this->warn('Couldn\'t find the quantaforge.test service. Make sure you add ['.implode(',', $services).'] to the depends_on config.');
         } else {
-            $compose['services']['quantaquirk.test']['depends_on'] = collect($compose['services']['quantaquirk.test']['depends_on'] ?? [])
+            $compose['services']['quantaforge.test']['depends_on'] = collect($compose['services']['quantaforge.test']['depends_on'] ?? [])
                 ->merge($services)
                 ->unique()
                 ->values()
@@ -103,7 +103,7 @@ trait InteractsWithDockerComposeServices
             $compose['services']['selenium']['image'] = 'seleniarm/standalone-chromium';
         }
 
-        file_put_contents($this->quantaquirk->basePath('docker-compose.yml'), Yaml::dump($compose, Yaml::DUMP_OBJECT_AS_MAP));
+        file_put_contents($this->quantaforge->basePath('docker-compose.yml'), Yaml::dump($compose, Yaml::DUMP_OBJECT_AS_MAP));
     }
 
     /**
@@ -114,7 +114,7 @@ trait InteractsWithDockerComposeServices
      */
     protected function replaceEnvVariables(array $services)
     {
-        $environment = file_get_contents($this->quantaquirk->basePath('.env'));
+        $environment = file_get_contents($this->quantaforge->basePath('.env'));
 
         if (in_array('pgsql', $services)) {
             $environment = str_replace('DB_CONNECTION=mysql', "DB_CONNECTION=pgsql", $environment);
@@ -158,7 +158,7 @@ trait InteractsWithDockerComposeServices
             $environment = preg_replace("/^MAIL_HOST=(.*)/m", "MAIL_HOST=mailpit", $environment);
         }
 
-        file_put_contents($this->quantaquirk->basePath('.env'), $environment);
+        file_put_contents($this->quantaforge->basePath('.env'), $environment);
     }
 
     /**
@@ -168,8 +168,8 @@ trait InteractsWithDockerComposeServices
      */
     protected function configurePhpUnit()
     {
-        if (! file_exists($path = $this->quantaquirk->basePath('phpunit.xml'))) {
-            $path = $this->quantaquirk->basePath('phpunit.xml.dist');
+        if (! file_exists($path = $this->quantaforge->basePath('phpunit.xml'))) {
+            $path = $this->quantaforge->basePath('phpunit.xml.dist');
         }
 
         $phpunit = file_get_contents($path);
@@ -177,7 +177,7 @@ trait InteractsWithDockerComposeServices
         $phpunit = preg_replace('/^.*DB_CONNECTION.*\n/m', '', $phpunit);
         $phpunit = str_replace('<!-- <env name="DB_DATABASE" value=":memory:"/> -->', '<env name="DB_DATABASE" value="testing"/>', $phpunit);
 
-        file_put_contents($this->quantaquirk->basePath('phpunit.xml'), $phpunit);
+        file_put_contents($this->quantaforge->basePath('phpunit.xml'), $phpunit);
     }
 
     /**
@@ -187,21 +187,21 @@ trait InteractsWithDockerComposeServices
      */
     protected function installDevContainer()
     {
-        if (! is_dir($this->quantaquirk->basePath('.devcontainer'))) {
-            mkdir($this->quantaquirk->basePath('.devcontainer'), 0755, true);
+        if (! is_dir($this->quantaforge->basePath('.devcontainer'))) {
+            mkdir($this->quantaforge->basePath('.devcontainer'), 0755, true);
         }
 
         file_put_contents(
-            $this->quantaquirk->basePath('.devcontainer/devcontainer.json'),
+            $this->quantaforge->basePath('.devcontainer/devcontainer.json'),
             file_get_contents(__DIR__.'/../../../stubs/devcontainer.stub')
         );
 
-        $environment = file_get_contents($this->quantaquirk->basePath('.env'));
+        $environment = file_get_contents($this->quantaforge->basePath('.env'));
 
         $environment .= "\nWWWGROUP=1000";
         $environment .= "\nWWWUSER=1000\n";
 
-        file_put_contents($this->quantaquirk->basePath('.env'), $environment);
+        file_put_contents($this->quantaforge->basePath('.env'), $environment);
     }
 
     /**

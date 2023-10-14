@@ -1,8 +1,8 @@
 <?php
 
-namespace QuantaQuirk\Sail\Console;
+namespace QuantaForge\Sail\Console;
 
-use QuantaQuirk\Console\Command;
+use QuantaForge\Console\Command;
 
 class PublishCommand extends Command
 {
@@ -18,7 +18,7 @@ class PublishCommand extends Command
      *
      * @var string
      */
-    protected $description = 'Publish the QuantaQuirk Sail Docker files';
+    protected $description = 'Publish the QuantaForge Sail Docker files';
 
     /**
      * Execute the console command.
@@ -31,15 +31,15 @@ class PublishCommand extends Command
         $this->call('vendor:publish', ['--tag' => 'sail-database']);
 
         file_put_contents(
-            $this->quantaquirk->basePath('docker-compose.yml'),
+            $this->quantaforge->basePath('docker-compose.yml'),
             str_replace(
                 [
-                    './vendor/quantaquirk/sail/runtimes/8.3',
-                    './vendor/quantaquirk/sail/runtimes/8.2',
-                    './vendor/quantaquirk/sail/runtimes/8.1',
-                    './vendor/quantaquirk/sail/runtimes/8.0',
-                    './vendor/quantaquirk/sail/database/mysql',
-                    './vendor/quantaquirk/sail/database/pgsql'
+                    './vendor/quantaforge/sail/runtimes/8.3',
+                    './vendor/quantaforge/sail/runtimes/8.2',
+                    './vendor/quantaforge/sail/runtimes/8.1',
+                    './vendor/quantaforge/sail/runtimes/8.0',
+                    './vendor/quantaforge/sail/database/mysql',
+                    './vendor/quantaforge/sail/database/pgsql'
                 ],
                 [
                     './docker/8.3',
@@ -49,7 +49,7 @@ class PublishCommand extends Command
                     './docker/mysql',
                     './docker/pgsql'
                 ],
-                file_get_contents($this->quantaquirk->basePath('docker-compose.yml'))
+                file_get_contents($this->quantaforge->basePath('docker-compose.yml'))
             )
         );
     }

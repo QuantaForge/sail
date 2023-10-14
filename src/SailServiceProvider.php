@@ -1,12 +1,12 @@
 <?php
 
-namespace QuantaQuirk\Sail;
+namespace QuantaForge\Sail;
 
-use QuantaQuirk\Contracts\Support\DeferrableProvider;
-use QuantaQuirk\Support\ServiceProvider;
-use QuantaQuirk\Sail\Console\AddCommand;
-use QuantaQuirk\Sail\Console\InstallCommand;
-use QuantaQuirk\Sail\Console\PublishCommand;
+use QuantaForge\Contracts\Support\DeferrableProvider;
+use QuantaForge\Support\ServiceProvider;
+use QuantaForge\Sail\Console\AddCommand;
+use QuantaForge\Sail\Console\InstallCommand;
+use QuantaForge\Sail\Console\PublishCommand;
 
 class SailServiceProvider extends ServiceProvider implements DeferrableProvider
 {

@@ -1,7 +1,7 @@
 {
-    "name": "quantaquirk/sail",
-    "description": "Docker files for running a basic QuantaQuirk application.",
-    "keywords": ["quantaquirk", "docker"],
+    "name": "quantaforge/sail",
+    "description": "Docker files for running a basic QuantaForge application.",
+    "keywords": ["quantaforge", "docker"],
     "license": "proprietary",
     "authors": [
         {
@@ -11,9 +11,9 @@
     ],
     "require": {
         "php": "^8.1",
-        "quantaquirk/console": "^1.0.0",
-        "quantaquirk/contracts": "^1.0.0",
-        "quantaquirk/support": "^1.0.0",
+        "quantaforge/console": "^1.0.0",
+        "quantaforge/contracts": "^1.0.0",
+        "quantaforge/support": "^1.0.0",
         "symfony/yaml": "^6.0"
     },
     "bin": [
@@ -21,16 +21,16 @@
     ],
     "autoload": {
         "psr-4": {
-            "QuantaQuirk\\Sail\\": "src/"
+            "QuantaForge\\Sail\\": "src/"
         }
     },
     "extra": {
         "branch-alias": {
             "dev-master": "1.x-dev"
         },
-        "quantaquirk": {
+        "quantaforge": {
             "providers": [
-                "QuantaQuirk\\Sail\\SailServiceProvider"
+                "QuantaForge\\Sail\\SailServiceProvider"
             ]
         }
     },

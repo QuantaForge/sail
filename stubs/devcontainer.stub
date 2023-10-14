@@ -4,16 +4,16 @@
 	"dockerComposeFile": [
 		"../docker-compose.yml"
 	],
-	"service": "quantaquirk.test",
+	"service": "quantaforge.test",
 	"workspaceFolder": "/var/www/html",
 	"customizations": {
 		"vscode": {
 			"extensions": [
 				// "mikestead.dotenv",
-				// "amiralizadeh9480.quantaquirk-extra-intellisense",
-				// "ryannaddy.quantaquirk-artisan",
-				// "onecentlin.quantaquirk5-snippets",
-				// "onecentlin.quantaquirk-blade"
+				// "amiralizadeh9480.quantaforge-extra-intellisense",
+				// "ryannaddy.quantaforge-artisan",
+				// "onecentlin.quantaforge5-snippets",
+				// "onecentlin.quantaforge-blade"
 			],
 			"settings": {}
 		}

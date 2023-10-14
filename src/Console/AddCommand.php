@@ -1,9 +1,9 @@
 <?php
 
-namespace QuantaQuirk\Sail\Console;
+namespace QuantaForge\Sail\Console;
 
-use QuantaQuirk\Console\Command;
-use QuantaQuirk\Sail\Console\Concerns\InteractsWithDockerComposeServices;
+use QuantaForge\Console\Command;
+use QuantaForge\Sail\Console\Concerns\InteractsWithDockerComposeServices;
 
 class AddCommand extends Command
 {
